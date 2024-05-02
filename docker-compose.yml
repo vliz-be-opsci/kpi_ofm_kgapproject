@@ -15,7 +15,7 @@ services:
     image: redpencil/yasgui:latest
     container_name: kpi_ofm_kgap_yasgui
     environment:
-      DEFAULT_SPARQL_ENDPOINT: "http://localhost:7200/repositories/${GDB_REPO:-kgap}" # that should be in the setup script | same exposed port as graphdb
+      DEFAULT_SPARQL_ENDPOINT: "http://localhost:7201/repositories/${GDB_REPO:-kgap}" # that should be in the setup script | same exposed port as graphdb
     ports:
       - "8080:80"
   graphdb:
@@ -27,7 +27,7 @@ services:
       #GDB_REPO: kgap                       # default should be changed to reflect the name of your particular case
       #GDB_HOME_FOLDER: /opt/graphdb/home/  # default might be changed to externalise/persist the storage 
     ports:
-      - 7200:7200     # HTTP
+      - 7201:7200     # HTTP
     volumes:
       - ./data:/root/graphdb-import/data
       # todo later - consider mounted volumes for persistence of data ?
@@ -45,16 +45,16 @@ services:
     env_file:
       - ./.env
     environment:
-      GDB_BASE: "http://graphdb:7200/"
+      GDB_BASE: "http://graphdb:7201/"
       NOTEBOOK_ARGS: "--NotebookApp.token=''"
     depends_on:
       graphdb:
         condition: service_healthy
 
   sembench:
-    #build:
-    #    context: ./sembench
-    image: ${REG_NS:-kgap}/kgap_sembench:${BUILD_TAG:-latest}
+    build:
+        context: ./sembench
+    #image: ${REG_NS:-kgap}/kgap_sembench:${BUILD_TAG:-latest}
     container_name: kpi_ofm_kgap_sembench
     volumes:
       - "./data:/data"
