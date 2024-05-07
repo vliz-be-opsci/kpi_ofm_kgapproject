@@ -36,7 +36,7 @@ services:
     image: ${REG_NS:-kgap}/kgap_jupyter:${BUILD_TAG:-latest}
     container_name: kpi_ofm_kgap_jupyter
     ports:
-      - "8889:8888"
+      - "8890:8888"
     links:
       - graphdb
     volumes:
