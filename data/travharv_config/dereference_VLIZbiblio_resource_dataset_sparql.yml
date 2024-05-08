@@ -1,0 +1,38 @@
+snooze-till-graph-age-minutes: 0
+prefix:
+  rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  dcat: <http://www.w3.org/ns/dcat#>
+  schema: <https://schema.org/>
+  org: <http://www.w3.org/ns/org#>
+  dct: <http://purl.org/dc/terms/> 
+  mi: <http://www.marineinfo.org/ns/ontology#>
+assert:
+  - subjects:
+      literal:
+        - http://marineinfo.org/id/collection/396  # VLIZ Bibliography
+    paths:
+      - "<http://www.w3.org/ns/dcat#resource> "
+  - subjects:                                       # same result as following subject, but not dereferencing atm
+      SPARQL: >
+        SELECT DISTINCT ?s
+        WHERE {
+              [] <http://www.w3.org/ns/dcat#resource> ?s .
+              }
+    paths:
+      - "<http://purl.org/dc/terms/title>"
+      - "<http://purl.org/dc/terms/license>"
+      - "<http://purl.org/dc/terms/rights>"
+      - "<https://schema.org/author>/<https://schema.org/givenName>"
+      - "<https://schema.org/author>/<https://schema.org/identifier>"
+      - "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
+  - subjects: 
+      SPARQL: > 
+        SELECT DISTINCT ?pub
+        WHERE {
+            ?s ?p ?pub .
+            FILTER(REGEX(STR(?pub), "marineinfo.org/id/dataset"))
+        }
+    paths:
+      - "<http://purl.org/dc/terms/title>"
+      - "<http://purl.org/dc/terms/license>"
+      - "<http://purl.org/dc/terms/rights>"
