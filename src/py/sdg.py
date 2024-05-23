@@ -15,7 +15,7 @@ from pykg2tbl import DefaultSparqlBuilder, KGSource, QueryResult
 #      & modify into correct format
 
 # Step 0. Identify required info: title, abstract, description, keywords? & set variables
-OSDGTOOL_URL = "http://localhost:5002/tag"
+OSDGTOOL_URL = "http://osdg-tool:5002/tag"
 
 # Step 1.a. Get required info from publications in GraphDB & modify into correct format
 
