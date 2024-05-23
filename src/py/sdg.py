@@ -14,7 +14,7 @@ from pykg2tbl import DefaultSparqlBuilder, KGSource, QueryResult
 #               -b. marineinfo_urls
 #      & modify into correct format
 
-# Step 0. Identify required info: title, abstract, description, keywords? & set variables
+# Step 0. Set variables
 OSDGTOOL_URL = "http://osdg-tool:5002/tag"
 
 # Step 1.a. Get required info from publications in GraphDB & modify into correct format
