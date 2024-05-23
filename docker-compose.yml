@@ -27,7 +27,7 @@ services:
       #GDB_REPO: kgap                       # default should be changed to reflect the name of your particular case
       #GDB_HOME_FOLDER: /opt/graphdb/home/  # default might be changed to externalise/persist the storage 
     ports:
-      - 7201:7200     # HTTP
+      - 7205:7200     # HTTP
     volumes:
       - ./data:/root/graphdb-import/data
       # todo later - consider mounted volumes for persistence of data ?
@@ -36,7 +36,7 @@ services:
     image: ${REG_NS:-kgap}/kgap_jupyter:${BUILD_TAG:-latest}
     container_name: kpi_ofm_kgap_jupyter
     ports:
-      - "8890:8888"
+      - "8895:8888"
     links:
       - graphdb
     volumes:
