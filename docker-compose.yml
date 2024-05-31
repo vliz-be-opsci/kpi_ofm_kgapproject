@@ -52,9 +52,9 @@ services:
         condition: service_healthy
 
   sembench:
-    build:
-        context: ./sembench
-    #image: ${REG_NS:-kgap}/kgap_sembench:${BUILD_TAG:-latest}
+    #build:
+    #    context: ./sembench
+    image: ${REG_NS:-kgap}/kgap_sembench:${BUILD_TAG:-latest}
     container_name: kpi_ofm_kgap_sembench
     volumes:
       - "./data:/data"
